@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
+  <!-- Dark rounded square background -->
+  <rect width="100" height="100" rx="22" fill="#1a1a1a"/>
+  <!-- V / checkmark mark -->
+  <polyline
+    points="24,46 42,72 76,28"
+    fill="none"
+    stroke="white"
+    stroke-width="10"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+  <!-- Subtle dot accent -->
+  <circle cx="78" cy="22" r="6" fill="white" opacity="0.2"/>
+</svg>
