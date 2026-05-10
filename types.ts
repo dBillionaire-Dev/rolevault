@@ -1,12 +1,23 @@
-/** The shape of a single content block returned by the Anthropic API */
-export interface AnthropicContentBlock {
-  type: 'text' | 'tool_use' | 'tool_result' | 'image' | 'document'
-  text?: string
+/** The shape of a single part in a Gemini response */
+export interface GeminiPart {
+  text: string
 }
 
-/** The top-level shape of an Anthropic /v1/messages response */
-export interface AnthropicResponse {
-  content: AnthropicContentBlock[]
+/** A single content block in a Gemini response */
+export interface GeminiContent {
+  parts: GeminiPart[]
+  role: string
+}
+
+/** A single candidate in a Gemini response */
+export interface GeminiCandidate {
+  content: GeminiContent
+  finishReason: string
+}
+
+/** The top-level shape of a Gemini generateContent response */
+export interface GeminiResponse {
+  candidates: GeminiCandidate[]
 }
 
 /** All possible UI states the app can be in */

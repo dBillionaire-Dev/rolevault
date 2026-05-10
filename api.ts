@@ -1,10 +1,12 @@
-import type { AnthropicResponse } from './types'
-import 'dotenv/config'
+import type { GeminiResponse } from './types'
 
-const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages'
-const MODEL = 'claude-sonnet-4-20250514'
-const MAX_TOKENS = 1000
+const GEMINI_MODEL = 'gemini-2.0-flash'
 const QUESTION_COUNT = 3
+
+// Vite exposes env variables via import.meta.env
+const API_KEY = import.meta.env.VITE_GEMINI_API_KEY as string
+
+const GEMINI_API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${GEMINI_MODEL}:generateContent?key=${API_KEY}`
 
 /**
  * Builds the prompt for the given job title.
@@ -26,36 +28,35 @@ Respond ONLY with a JSON array of exactly ${QUESTION_COUNT} strings, each being 
 }
 
 /**
- * Calls the Anthropic API and returns an array of interview questions
+ * Calls the Gemini API and returns an array of interview questions
  * for the given job title.
  *
  * @throws {Error} if the API call fails or the response cannot be parsed
  */
 export async function generateInterviewQuestions(jobTitle: string): Promise<string[]> {
-  const response = await fetch(ANTHROPIC_API_URL, {
+  const response = await fetch(GEMINI_API_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY,
-      'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
-      model: MODEL,
-      max_tokens: MAX_TOKENS,
-      messages: [{ role: 'user', content: buildPrompt(jobTitle) }],
+      contents: [
+        {
+          parts: [{ text: buildPrompt(jobTitle) }],
+        },
+      ],
     }),
   })
 
   if (!response.ok) {
-    // Try to surface the API's own error message if available
     const errorBody = await response.json().catch(() => ({})) as { error?: { message?: string } }
     throw new Error(errorBody?.error?.message ?? `API error ${response.status}`)
   }
 
-  const data = (await response.json()) as AnthropicResponse
+  const data = (await response.json()) as GeminiResponse
 
-  // The API returns an array of content blocks; we want the text one
-  const rawText = data.content.find((block) => block.type === 'text')?.text ?? ''
+  // Gemini returns candidates array — we want the first one's text
+  const rawText = data.candidates?.[0]?.content?.parts?.[0]?.text ?? ''
 
   // Strip markdown code fences in case the model wraps its JSON output
   const cleaned = rawText.replace(/```json|```/g, '').trim()
