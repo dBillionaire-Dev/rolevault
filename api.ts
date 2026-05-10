@@ -1,4 +1,5 @@
 import type { AnthropicResponse } from './types'
+import 'dotenv/config'
 
 const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages'
 const MODEL = 'claude-sonnet-4-20250514'
@@ -35,6 +36,8 @@ export async function generateInterviewQuestions(jobTitle: string): Promise<stri
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
+      'x-api-key': import.meta.env.VITE_ANTHROPIC_API_KEY,
+      'anthropic-version': '2023-06-01',
     },
     body: JSON.stringify({
       model: MODEL,
