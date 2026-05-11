@@ -3,7 +3,7 @@
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding: 3rem 1rem;
+  padding: 0 1rem 3rem;
 }
 
 .container {
@@ -11,27 +11,51 @@
   max-width: 640px;
 }
 
-.header {
+/* ── Hero ── */
+.hero {
+  background: var(--hero-bg);
+  border-bottom: 1px solid var(--hero-border);
+  border-radius: 0 0 12px 12px;
+  padding: 2rem 2rem 1.75rem;
   margin-bottom: 2rem;
+  margin-left: -1rem;
+  margin-right: -1rem;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+}
+
+.heroText {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 600;
-  color: #1a1a1a;
-  margin-bottom: 8px;
+  color: var(--hero-title);
   letter-spacing: -0.01em;
 }
 
 .subtitle {
-  font-size: 14px;
-  color: #666;
-  line-height: 1.6;
+  font-size: 13px;
+  color: var(--hero-subtitle);
+  line-height: 1.5;
+  color: peachpuff;
 }
 
+/* ── Input row ── */
 .inputRow {
   display: flex;
-  gap: 10px;
+  gap: 8px;
   margin-bottom: 1.5rem;
 }
 
@@ -39,73 +63,74 @@
   flex: 1;
   height: 42px;
   padding: 0 14px;
-  font-size: 15px;
-  border: 1px solid #ddd;
+  font-size: 14px;
+  border: 1px solid var(--input-border);
   border-radius: 8px;
-  background: #fff;
-  color: #1a1a1a;
+  background: var(--input-bg);
+  color: var(--input-color);
   outline: none;
   transition: border-color 0.15s, box-shadow 0.15s;
 }
 
 .input:focus {
-  border-color: #999;
-  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 .input::placeholder {
-  color: #aaa;
+  color: var(--input-placeholder);
 }
 
 .input:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
 }
 
 .button {
   height: 42px;
-  padding: 0 20px;
+  padding: 0 10px;
   font-size: 14px;
   font-weight: 500;
-  border: 1px solid #1a1a1a;
+  border: 1px solid transparent;
   border-radius: 8px;
-  background: #1a1a1a;
-  color: #fff;
+  background: var(--btn-bg);
+  color: var(--btn-color);
   cursor: pointer;
   white-space: nowrap;
-  transition: opacity 0.15s, transform 0.1s;
+  transition: background 0.15s, transform 0.1s;
 }
 
 .button:hover:not(:disabled) {
-  opacity: 0.85;
+  background: var(--btn-hover);
 }
 
 .button:active:not(:disabled) {
-  transform: scale(0.98);
+  transform: scale(0.97);
 }
 
 .button:disabled {
-  opacity: 0.4;
+  opacity: 0.35;
   cursor: not-allowed;
 }
 
+/* ── Loading ── */
 .loadingBox {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 1.25rem;
+  padding: 1rem 1.25rem;
   border-radius: 8px;
-  background: #fff;
-  border: 1px solid #e8e8e4;
+  background: var(--loading-bg);
+  border: 1px solid var(--loading-border);
   margin-bottom: 1.5rem;
 }
 
 .spinner {
   display: block;
-  width: 18px;
-  height: 18px;
-  border: 2px solid #ddd;
-  border-top-color: #1a1a1a;
+  width: 16px;
+  height: 16px;
+  border: 2px solid var(--spinner-track);
+  border-top-color: var(--spinner-color);
   border-radius: 50%;
   animation: spin 0.7s linear infinite;
   flex-shrink: 0;
@@ -116,20 +141,22 @@
 }
 
 .loadingText {
-  font-size: 14px;
-  color: #666;
+  font-size: 13px;
+  color: var(--loading-text);
 }
 
+/* ── Error ── */
 .errorBox {
   padding: 1rem 1.25rem;
-  background: #fff5f5;
-  border: 1px solid #fca5a5;
+  background: transparent;
+  border: 1px solid #7f2020;
   border-radius: 8px;
-  color: #b91c1c;
+  color: #e05252;
   font-size: 14px;
   margin-bottom: 1.5rem;
 }
 
+/* ── Results ── */
 .results {
   display: flex;
   flex-direction: column;
@@ -137,17 +164,19 @@
 
 .roleChip {
   display: inline-block;
-  font-size: 12px;
+  font-size: 11px;
+  font-weight: 500;
   padding: 3px 10px;
   border-radius: 20px;
-  background: #fff;
-  color: #666;
-  border: 1px solid #e8e8e4;
+  background: var(--chip-bg);
+  color: var(--chip-color);
+  border: 1px solid var(--chip-border);
   margin-bottom: 1rem;
+  letter-spacing: 0.02em;
 }
 
 .questionList {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
 }

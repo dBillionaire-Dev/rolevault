@@ -1,9 +1,29 @@
 .card {
   background: #ffffff;
-  border: 1px solid #e8e8e4;
+  border: 1.5px solid #e5e3ef;
   border-radius: 12px;
   padding: 1.25rem 1.5rem;
   animation: fadeUp 0.35s ease both;
+  border-left: 4px solid var(--accent);
+  background: var(--card-bg);
+  border-color: var(--card-border-color);
+}
+
+/* Per-card accent colors set via CSS custom properties on the element */
+.card:nth-child(1) {
+  --accent: var(--card-1-accent);
+  --card-bg: var(--card-1-bg);
+  --card-border-color: var(--card-1-border);
+}
+.card:nth-child(2) {
+  --accent: var(--card-2-accent);
+  --card-bg: var(--card-2-bg);
+  --card-border-color: var(--card-2-border);
+}
+.card:nth-child(3) {
+  --accent: var(--card-3-accent);
+  --card-bg: var(--card-3-bg);
+  --card-border-color: var(--card-3-border);
 }
 
 @keyframes fadeUp {
@@ -19,16 +39,16 @@
 
 .label {
   display: block;
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: #999;
+  color: var(--accent);
   margin-bottom: 10px;
 }
 
 .text {
-  font-size: 15px;
-  color: #1a1a1a;
+  font-size: 17px;
+  color: #ffffff;
   line-height: 1.65;
 }
