@@ -71,11 +71,19 @@ export default function App() {
   return (
     <main className={styles.main}>
       <div className={styles.container}>
-        <header className={styles.header}>
-          <h1 className={styles.title}>Interview Question Generator</h1>
-          <p className={styles.subtitle}>
-            Enter any job title to generate three thoughtful, role-specific interview questions.
-          </p>
+
+        <header className={styles.hero}>
+          <svg className={styles.logo} viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="100" height="100" rx="22" fill="rgba(255,255,255,0.07)"/>
+            <polyline points="24,46 42,72 76,28" fill="none" stroke="#3d5afe" strokeWidth="10" strokeLinecap="round" strokeLinejoin="round"/>
+            <circle cx="78" cy="22" r="5" fill="#3d5afe" opacity="0.45"/>
+          </svg>
+          <div className={styles.heroText}>
+            <h1 className={styles.title}>RoleVault</h1>
+            <p className={styles.subtitle}>
+              Generate role-specific interview questions instantly.
+            </p>
+          </div>
         </header>
 
         <div className={styles.inputRow}>

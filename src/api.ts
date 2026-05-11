@@ -1,6 +1,6 @@
 import type { GeminiResponse } from './types'
 
-const GEMINI_MODEL = 'gemini-2.5-flash'
+const GEMINI_MODEL = 'gemini-3.1-flash-lite'
 const QUESTION_COUNT = 3
 
 // Vite exposes env variables via import.meta.env
